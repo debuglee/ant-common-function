@@ -1,0 +1,17 @@
+{
+    "name": "debuglee/AntCommonFunction",
+    "description": "ant common function",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Debuglee",
+            "email": "li.leon@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "psr-4": {
+        "Debuglee\\AntCommonFunction\\": "src/"
+    }
+}
