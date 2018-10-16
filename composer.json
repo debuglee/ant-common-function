@@ -1,5 +1,5 @@
 {
-    "name": "debuglee/AntCommonFunction",
+    "name": "debuglee/ant-common-function",
     "description": "ant common function",
     "type": "composer-plugin",
     "license": "MIT",
