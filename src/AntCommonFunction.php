@@ -9,13 +9,29 @@ class AntCommonFunction
 
     }
 
+    /**
+     * [is_local description]
+     *
+     * 判断是否是本地测试环境
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:06:53+0800
+     * @return   boolean                     [description]
+     */
     function is_local()
     {
         return PHP_OS == 'Darwin';
     }
 
 
-    // 获取客户端ip
+    /**
+     * [get_client_ip description]
+     *
+     * 获取客户端ip
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:07:18+0800
+     * @return   String
+     */
     function get_client_ip()
     {
         if (isset($_SERVER['HTTP_CLIENT_IP']))
@@ -38,7 +54,16 @@ class AntCommonFunction
         return filter_var($onlineip, FILTER_VALIDATE_IP) !== false ? $onlineip : 'unknown';
     }
 
-    // 检查内容中是否只有中文
+    /**
+     * [only_chinese_and_word description]
+     *
+     * 检查内容中是否只有中文
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:07:35+0800
+     * @param    [type]                      $string [description]
+     * @return   String
+     */
     function only_chinese_and_word($string)
     {
         $chinese = "(?:[".chr(228)."-".chr(233)."][".chr(128)."-".chr(191)."][".chr(128)."-".chr(191)."])";
@@ -47,7 +72,15 @@ class AntCommonFunction
     }
 
 
-    //获取服务器的ip
+    /**
+     * [real_server_ip description]
+     *
+     * 获取服务器的ip
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:07:45+0800
+     * @return   String
+     */
     function real_server_ip()
     {
         static $serverip = NULL;
@@ -77,13 +110,15 @@ class AntCommonFunction
     }
 
     /**
+     * [is_email description]
+     *
      * is email 判断电子邮件格式
      *
-     * @access  public
-     *
-     * @return string
-     *
-    **/
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:08:29+0800
+     * @param    String                      $email 电子邮箱
+     * @return   boolean                            正确返回true 错误返回false
+     */
     function is_email($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false)
@@ -94,14 +129,18 @@ class AntCommonFunction
         return true;
     }
 
+
     /**
+     * [sub_str description]
+     *
      * 截取字符串
      *
-     * @access public
-     *
-     * @return string
-     *
-    **/
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:09:39+0800
+     * @param    String                      $str    需要截取的字符串
+     * @param    integer                     $length 截取长度
+     * @return   String                              截取结果
+     */
     function sub_str($str, $length = 0){
         $return_str = "";//返回的字符串
         $len = mb_strlen($str,'utf8');// 以utf-8格式求字符串的长度，每个汉字算一个长度
@@ -120,7 +159,18 @@ class AntCommonFunction
         return $return_str.$omit;
     }
 
-    /* 2, 4, 8, 16, 32 ,64 进制互转  */
+    /**
+     * [bin_convert description]
+     *
+     * 2, 4, 8, 16, 32 ,64 进制互转
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:11:10+0800
+     * @param    String                      $str 需转换数据
+     * @param    String                      $n1  转换进制
+     * @param    String                      $n2  转换进制
+     * @return   String
+     */
     function bin_convert($str, $n1, $n2)
     {
         $arr_2 = array('0', '1');
@@ -203,7 +253,16 @@ class AntCommonFunction
         }
     }
 
-    /* 生成随机串  */
+    /**
+     * [random description]
+     *
+     * 生成随机串
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:13:05+0800
+     * @param    String                      $length 长度
+     * @return   String                              转换结果
+     */
     function random($length) {
         PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
         $hash = '';
@@ -218,12 +277,16 @@ class AntCommonFunction
     }
 
     /**
+     * [size_format description]
+     *
      * 格式化文件大小格式
      *
-     * @access public
-     *
-     * @return string
-    **/
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:13:54+0800
+     * @param    String                      $size 文件大小
+     * @param    integer                     $dec  转换单位
+     * @return   [type]                            [description]
+     */
     function size_format($size, $dec = 0)
     {
       $prefix = array('Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
@@ -239,7 +302,15 @@ class AntCommonFunction
       return round($size, $dec) . $prefix[$i];
     }
 
-    /* 加密  */
+    /**
+     * [encrypt description]
+     *
+     * 生产加密字符串
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:15:58+0800
+     * @param    String                      $encrypt 字符串内容
+     * @return   String
+     */
     function encrypt($encrypt)
     {
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
@@ -248,7 +319,15 @@ class AntCommonFunction
         return $passcrypt;
     }
 
-    /* 解密  */
+    /**
+     * [decrypt description]
+     *
+     * 解密 encrypt 生成的字符串
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:16:28+0800
+     * @param    String                      $passcrypt 需解密字符串
+     * @return   String
+     */
     function decrypt($passcrypt)
     {
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
@@ -259,8 +338,14 @@ class AntCommonFunction
     }
 
     /**
+     * [formatDateToTimestamp description]
+     *
      * 日期转换时间戳
-     * 日期格式必须是2011-06-05
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:17:50+0800
+     * @param    String                      $date 日期 格式必须是2011-06-05
+     * @return   String                            时间戳
      */
     function formatDateToTimestamp($date) {
         if (empty($date)) {
@@ -278,7 +363,16 @@ class AntCommonFunction
         return mktime(0,0,0,$month,$day,$year);
     }
 
-    // 格式化日期
+    /**
+     * [format_date description]
+     *
+     * 格式化日期,按照几秒前，几分钱，几小时前显示
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:18:33+0800
+     * @param    String                      $date 时间戳
+     * @return   String                            格式化日期
+     */
     function format_date($date)
     {
         $limit = abs(time() - $date);
@@ -303,49 +397,18 @@ class AntCommonFunction
     }
 
     /**
+     * [getFirstChar description]
      *
-     * getFirstChar
      * 获得汉字的拼音首字母
-     * @param $s0 汉字
-     * @return  $result 返回拼音
-     **/
+     *
+     * @Author   Debuglee<li.leon@gmail.com>
+     * @DateTime 2018-10-17T10:20:04+0800
+     * @param    [type]                      $s0 汉字
+     * @return   [type]                          返回拼音
+     */
     function getFirstChar($s0)
     {
-            if (isset($s0{0})) {
-                $fchar = ord($s0{0});
-                if($fchar>=ord("A") and $fchar<=ord("z") )return strtoupper($s0{0});
-
-                $s=iconv("UTF-8","gb2312", $s0);
-                $asc=ord($s{0})*256+ord($s{1})-65536;
-                if($asc>=-20319 and $asc<=-20284)return "A";
-                if($asc>=-20283 and $asc<=-19776)return "B";
-                if($asc>=-19775 and $asc<=-19219)return "C";
-                if($asc>=-19218 and $asc<=-18711)return "D";
-                if($asc>=-18710 and $asc<=-18527)return "E";
-                if($asc>=-18526 and $asc<=-18240)return "F";
-                if($asc>=-18239 and $asc<=-17923)return "G";
-                if($asc>=-17922 and $asc<=-17418)return "I";
-                if($asc>=-17417 and $asc<=-16475)return "J";
-                if($asc>=-16474 and $asc<=-16213)return "K";
-                if($asc>=-16212 and $asc<=-15641)return "L";
-                if($asc>=-15640 and $asc<=-15166)return "M";
-                if($asc>=-15165 and $asc<=-14923)return "N";
-                if($asc>=-14922 and $asc<=-14915)return "O";
-                if($asc>=-14914 and $asc<=-14631)return "P";
-                if($asc>=-14630 and $asc<=-14150)return "Q";
-                if($asc>=-14149 and $asc<=-14091)return "R";
-                if($asc>=-14090 and $asc<=-13319)return "S";
-                if($asc>=-13318 and $asc<=-12839)return "T";
-                if($asc>=-12838 and $asc<=-12557)return "W";
-                if($asc>=-12556 and $asc<=-11848)return "X";
-                if($asc>=-11847 and $asc<=-11056)return "Y";
-                if($asc>=-11055 and $asc<=-10247)return "Z";
-                return null;
-            } else{
-                return null;
-            }
-
-    /*
+        if (isset($s0{0})) {
             $fchar = ord($s0{0});
             if($fchar>=ord("A") and $fchar<=ord("z") )return strtoupper($s0{0});
 
@@ -375,8 +438,9 @@ class AntCommonFunction
             if($asc>=-11847 and $asc<=-11056)return "Y";
             if($asc>=-11055 and $asc<=-10247)return "Z";
             return null;
-    */
-
+        } else{
+            return null;
+        }
     }
 
 }
