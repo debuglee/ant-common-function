@@ -17,7 +17,7 @@ class AntCommonFunction
      * @DateTime 2018-10-17T10:06:53+0800
      * @return   boolean                     [description]
      */
-    function is_local()
+    public static function is_local()
     {
         return PHP_OS == 'Darwin';
     }
@@ -32,7 +32,7 @@ class AntCommonFunction
      * @DateTime 2018-10-17T10:07:18+0800
      * @return   String
      */
-    function get_client_ip()
+    public static function get_client_ip()
     {
         if (isset($_SERVER['HTTP_CLIENT_IP']))
         {
@@ -64,7 +64,7 @@ class AntCommonFunction
      * @param    [type]                      $string [description]
      * @return   String
      */
-    function only_chinese_and_word($string)
+    public static function only_chinese_and_word($string)
     {
         $chinese = "(?:[".chr(228)."-".chr(233)."][".chr(128)."-".chr(191)."][".chr(128)."-".chr(191)."])";
         $string = preg_replace("/$chinese/", '', $string);
@@ -81,7 +81,7 @@ class AntCommonFunction
      * @DateTime 2018-10-17T10:07:45+0800
      * @return   String
      */
-    function real_server_ip()
+    public static function real_server_ip()
     {
         static $serverip = NULL;
 
@@ -119,7 +119,7 @@ class AntCommonFunction
      * @param    String                      $email 电子邮箱
      * @return   boolean                            正确返回true 错误返回false
      */
-    function is_email($email)
+    public static function is_email($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false)
         {
@@ -141,7 +141,7 @@ class AntCommonFunction
      * @param    integer                     $length 截取长度
      * @return   String                              截取结果
      */
-    function sub_str($str, $length = 0){
+    public static function sub_str($str, $length = 0){
         $return_str = "";//返回的字符串
         $len = mb_strlen($str,'utf8');// 以utf-8格式求字符串的长度，每个汉字算一个长度
         if ( $len > $length ){
@@ -171,7 +171,7 @@ class AntCommonFunction
      * @param    String                      $n2  转换进制
      * @return   String
      */
-    function bin_convert($str, $n1, $n2)
+    public static function bin_convert($str, $n1, $n2)
     {
         $arr_2 = array('0', '1');
         $arr_4 = array('00', '01', '10', '11');
@@ -263,7 +263,7 @@ class AntCommonFunction
      * @param    String                      $length 长度
      * @return   String                              转换结果
      */
-    function random($length) {
+    public static function random($length) {
         PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
         $hash = '';
         $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
@@ -287,7 +287,7 @@ class AntCommonFunction
      * @param    integer                     $dec  转换单位
      * @return   [type]                            [description]
      */
-    function size_format($size, $dec = 0)
+    public static function size_format($size, $dec = 0)
     {
       $prefix = array('Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
       $size   = round($size, $dec);
@@ -311,7 +311,7 @@ class AntCommonFunction
      * @param    String                      $encrypt 字符串内容
      * @return   String
      */
-    function encrypt($encrypt)
+    public static function encrypt($encrypt)
     {
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
         $passcrypt = mcrypt_encrypt(MCRYPT_DES, KEY, $encrypt, MCRYPT_MODE_ECB, $iv);
@@ -328,7 +328,7 @@ class AntCommonFunction
      * @param    String                      $passcrypt 需解密字符串
      * @return   String
      */
-    function decrypt($passcrypt)
+    public static function decrypt($passcrypt)
     {
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
         $encrypt = mcrypt_decrypt(MCRYPT_DES, KEY, $passcrypt, MCRYPT_MODE_ECB, $iv);
@@ -347,7 +347,7 @@ class AntCommonFunction
      * @param    String                      $date 日期 格式必须是2011-06-05
      * @return   String                            时间戳
      */
-    function formatDateToTimestamp($date) {
+    public static function formatDateToTimestamp($date) {
         if (empty($date)) {
             return false;
         }
@@ -373,7 +373,7 @@ class AntCommonFunction
      * @param    String                      $date 时间戳
      * @return   String                            格式化日期
      */
-    function format_date($date)
+    public static function format_date($date)
     {
         $limit = abs(time() - $date);
 
@@ -406,7 +406,7 @@ class AntCommonFunction
      * @param    [type]                      $s0 汉字
      * @return   [type]                          返回拼音
      */
-    function getFirstChar($s0)
+    public static function getFirstChar($s0)
     {
         if (isset($s0{0})) {
             $fchar = ord($s0{0});
