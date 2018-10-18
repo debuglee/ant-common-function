@@ -9,7 +9,7 @@
             "email": "li.leon@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "1.0",
     "require": {},
     "psr-4": {
         "Debuglee\\AntCommonFunction\\": "src/"
