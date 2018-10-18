@@ -1,6 +1,5 @@
 {
     "name": "debuglee/ant-common-function",
-    "version": "1.0",
     "description": "PHP Common function library",
     "keywords": ["common"],
     "type": "library",
