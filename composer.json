@@ -1,8 +1,9 @@
 {
     "name": "debuglee/ant-common-function",
     "version": "1.0",
-    "description": "ant common function",
-    "type": "composer-plugin",
+    "description": "PHP Common function library",
+    "keywords": ["common"],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +12,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "php": ">=5.4.0",
+    },
     "psr-4": {
         "Debuglee\\AntCommonFunction\\": "src/"
     }
