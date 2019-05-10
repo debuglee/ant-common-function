@@ -1,4 +1,12 @@
 <?php
+/*
+ * @Author: Debuglee#li.leon@gmail.com
+ * @LastAuthor: Do not edit
+ * @since: 2018-10-17 06:08:36
+ * @lastTime: 2019-05-11 00:20:09
+ */
+
+
 namespace Debuglee\AntCommonFunction;
 
 class AntCommonFunction
@@ -21,7 +29,6 @@ class AntCommonFunction
     {
         return PHP_OS == 'Darwin';
     }
-
 
     /**
      * [get_client_ip description]
@@ -442,5 +449,6 @@ class AntCommonFunction
             return null;
         }
     }
+
 
 }
