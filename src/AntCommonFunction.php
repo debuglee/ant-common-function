@@ -3,7 +3,7 @@
  * @Author: Debuglee#li.leon@gmail.com
  * @LastAuthor: Do not edit
  * @since: 2018-10-17 06:08:36
- * @lastTime: 2019-05-11 00:21:07
+ * @lastTime: 2019-05-13 16:41:33
  */
 
 
@@ -358,9 +358,7 @@ class AntCommonFunction
         if (empty($date)) {
             return false;
         }
-
         $str_date = explode('-', $date);
-
         $year = $str_date[0];//取得年份
 
         $month = $str_date[1];//取得月份
